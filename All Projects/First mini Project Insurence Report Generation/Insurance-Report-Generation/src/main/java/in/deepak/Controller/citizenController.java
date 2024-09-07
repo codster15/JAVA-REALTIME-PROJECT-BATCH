@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 
 @Controller
 public class citizenController {
@@ -26,7 +24,15 @@ public class citizenController {
         model.addAttribute("status" ,sc.loadStatus() );
 
 
+        System.out.println("==================================================");
 
+        System.out.println(sc.loadPlan());
+
+
+
+        System.out.println("==================================================");
+
+        System.out.println(sc.loadStatus());
 
 
        return "index";
