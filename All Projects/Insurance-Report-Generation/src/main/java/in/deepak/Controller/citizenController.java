@@ -113,7 +113,7 @@ public class citizenController {
 
                            //----------------------------------------------------------------------------
 
-                           
+
                                                            Citizens c = new Citizens();
 
                           // System.out.println("================  Load Plan   =================================");
