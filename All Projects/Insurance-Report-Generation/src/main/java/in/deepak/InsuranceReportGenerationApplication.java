@@ -1,18 +1,11 @@
 package in.deepak;
 
-
-import in.deepak.Entity.PlanName;
-import in.deepak.Entity.status;
-import in.deepak.Repositiory.CitizenRepositiory;
 import in.deepak.Repositiory.planName;
 import in.deepak.Repositiory.statusRepo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
 @SpringBootApplication
 public class InsuranceReportGenerationApplication {
@@ -25,9 +18,6 @@ public class InsuranceReportGenerationApplication {
 		statusRepo status = run.getBean(statusRepo.class);
 
 		planName planName = run.getBean(planName.class);
-
-
-
 
 
 

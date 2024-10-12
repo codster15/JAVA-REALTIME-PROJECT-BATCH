@@ -21,7 +21,7 @@ public class serviceClass {
 
 
                                 //to load the data from the database
-                                public List<status> loadPlan(){
+                                public List<status> loadStatus(){
                                     List<status> all = statusRepo.findAll();
                                     return all;
                                 }
@@ -33,7 +33,7 @@ public class serviceClass {
 
 
                                 // to load the status from the database
-                                public List<PlanName> loadStatus() {
+                                public List<PlanName> loadPlan() {
                                     List<PlanName> all = planname.findAll();
                                     return all;
                                 }
