@@ -18,7 +18,7 @@ public interface ReportService_Interface {
 
     public  boolean excelGenerate();
 
-    public List<citizenEntity> search (SearchRequest searchRequest);
+    public SearchRequest search (SearchRequest searchRequest);
 
 
 }

@@ -6,6 +6,7 @@ import in.deepak.SearchRequest.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -43,7 +44,22 @@ public class ReportService_impl implements ReportService_Interface {
     }
 
     @Override
-    public List<citizenEntity> search(SearchRequest searchRequest) {
-        return null;
+    public SearchRequest search(SearchRequest searchRequest) {
+        String planName = searchRequest.getPlanName();
+        String planStatus = searchRequest.getPlanStatus();
+        String gender = searchRequest.getGender();
+        LocalDate startDate = searchRequest.getStartDate();
+        LocalDate endDate = searchRequest.getEndDate();
+
+//        SearchRequest citiEn = new citizenEntity();
+//        citiEn.setPlanName(planName);
+//        citiEn.setPlanStatus(planStatus);
+//        citiEn.setGender(gender);
+//        citiEn.setStartDate(startDate);
+//        citiEn.setEndDate(endDate);
+
+
+
+        return searchRequest;
     }
 }
