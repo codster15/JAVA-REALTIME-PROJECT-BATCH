@@ -1,9 +1,7 @@
 package in.deepak.Entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -12,8 +10,10 @@ import java.time.LocalDate;
 @Data
 public class citizenEntity {
 
+    @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
     private String gender;
     private String planName;
