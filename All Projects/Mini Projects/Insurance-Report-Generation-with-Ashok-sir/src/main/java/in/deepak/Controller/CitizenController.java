@@ -23,7 +23,6 @@ public class CitizenController {
 
     @GetMapping("/")
     public String LoadIndex(Model model) {
-
         List<String> plan = reportServiceImpl.loadPlan();
         List<String> status = reportServiceImpl.loadStatus();
 
