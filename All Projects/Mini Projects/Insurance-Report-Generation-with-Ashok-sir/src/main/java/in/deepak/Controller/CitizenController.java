@@ -3,7 +3,6 @@ package in.deepak.Controller;
 
 import in.deepak.Entity.citizenEntity;
 import in.deepak.ReportService.ReportService_Interface;
-import in.deepak.ReportService.ReportService_impl;
 import in.deepak.SearchRequest.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,29 +22,26 @@ public class CitizenController {
 
 
     @GetMapping("/")
-    public String LoadIndex(Model model){
+    public String LoadIndex(Model model) {
 
         List<String> plan = reportServiceImpl.loadPlan();
-
         List<String> status = reportServiceImpl.loadStatus();
 
-
-        model.addAttribute("plan" , plan);
-        model.addAttribute("status" , status);
+        model.addAttribute("plan", plan);
+        model.addAttribute("status", status);
 
         return "index";
     }
 
 
     @PostMapping("/submit")
-    public String SubmitData(Model model ,@RequestParam String plan,  // matches name="plan"
+    public String SubmitData(Model model,
+                             @RequestParam String plan,  // matches name="plan"
                              @RequestParam String status, // matches name="status"
                              @RequestParam String gender, // matches name="gender"
                              @RequestParam String startDate, // matches name="startDate"
                              @RequestParam String endDate // matches name="endDate"
-                            ) {
-
-        System.out.println(plan + "======" + status + "==========" + gender +"=========" + startDate + "==========" + endDate);
+                                                                                              ) {
 
         LocalDate start = LocalDate.parse(startDate);
         LocalDate end = LocalDate.parse(endDate);
@@ -56,19 +52,18 @@ public class CitizenController {
         searchObject.setGender(gender);
         searchObject.setStartDate(start);
         searchObject.setEndDate(end);
-
         SearchRequest search = reportServiceImpl.search(searchObject);
 
-        System.out.println(search);
 
-        model.addAttribute("msg" , "Data Send From UI to Controller");
+        List<citizenEntity> allCitizen = reportServiceImpl.findAllCitizen();
 
+        allCitizen.forEach(e-> System.out.println(e));
+        model.addAttribute("citizenList" , allCitizen);
 
 
         return "index";
 
     }
-
 
 
 }

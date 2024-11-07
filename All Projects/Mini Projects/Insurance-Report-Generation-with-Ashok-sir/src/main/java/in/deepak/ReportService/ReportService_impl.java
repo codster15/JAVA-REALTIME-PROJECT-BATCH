@@ -6,7 +6,6 @@ import in.deepak.SearchRequest.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,11 +15,15 @@ public class ReportService_impl implements ReportService_Interface {
     private CitizenRepositiory citizenRepositiory;
 
     @Override
+    public List<citizenEntity> findAllCitizen() {
+        List<citizenEntity> all = citizenRepositiory.findAll();
+        return all;
+    }
+
+
+    @Override
     public List<String> loadPlan() {
         List<String> plan = citizenRepositiory.LoadPlan();
-
-        plan.forEach(e-> System.out.println(e));
-        System.out.println("============================================================================================================================");
 
         return plan;
     }
@@ -28,7 +31,7 @@ public class ReportService_impl implements ReportService_Interface {
     @Override
     public List<String> loadStatus() {
         List<String> status = citizenRepositiory.LoadStatus();
-        status.forEach(e-> System.out.println(e));
+        status.forEach(e -> System.out.println(e));
 
         return status;
     }
@@ -45,19 +48,11 @@ public class ReportService_impl implements ReportService_Interface {
 
     @Override
     public SearchRequest search(SearchRequest searchRequest) {
-        String planName = searchRequest.getPlanName();
-        String planStatus = searchRequest.getPlanStatus();
-        String gender = searchRequest.getGender();
-        LocalDate startDate = searchRequest.getStartDate();
-        LocalDate endDate = searchRequest.getEndDate();
-
-//        SearchRequest citiEn = new citizenEntity();
-//        citiEn.setPlanName(planName);
-//        citiEn.setPlanStatus(planStatus);
-//        citiEn.setGender(gender);
-//        citiEn.setStartDate(startDate);
-//        citiEn.setEndDate(endDate);
-
+//                    String planName = searchRequest.getPlanName();
+//                    String planStatus = searchRequest.getPlanStatus();
+//                    String gender = searchRequest.getGender();
+//                    LocalDate startDate = searchRequest.getStartDate();
+//                    LocalDate endDate = searchRequest.getEndDate();
 
 
         return searchRequest;
