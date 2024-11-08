@@ -35,30 +35,40 @@ public class CitizenController {
 
     @PostMapping("/submit")
     public String SubmitData(Model model,
-                             @RequestParam String plan,  // matches name="plan"
-                             @RequestParam String status, // matches name="status"
-                             @RequestParam String gender, // matches name="gender"
-                             @RequestParam String startDate, // matches name="startDate"
-                             @RequestParam String endDate // matches name="endDate"
+                             @RequestParam (required = false) String plan,  // matches name="plan"
+                             @RequestParam (required = false)  String status, // matches name="status"
+                             @RequestParam (required = false)  String gender, // matches name="gender"
+                             @RequestParam (required = false)  String startDate, // matches name="startDate"
+                             @RequestParam (required = false) String endDate // matches name="endDate"
+
+
+
                                                                                               ) {
+        List<citizenEntity> allCitizen ;
+//        LocalDate start  ;
+//        LocalDate end ;
 
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.parse(endDate);
+        if(plan != null && status != null && gender != null && startDate != null && endDate != null){
 
-        SearchRequest searchObject = new SearchRequest();
-        searchObject.setPlanName(plan);
-        searchObject.setPlanStatus(status);
-        searchObject.setGender(gender);
-        searchObject.setStartDate(start);
-        searchObject.setEndDate(end);
-        SearchRequest search = reportServiceImpl.search(searchObject);
+          LocalDate  start = LocalDate.parse(startDate);
+           LocalDate end   = LocalDate.parse(endDate);
+            SearchRequest searchObject = new SearchRequest();
+            searchObject.setPlanName(plan);
+            searchObject.setPlanStatus(status);
+            searchObject.setGender(gender);
+            searchObject.setStartDate(start);
+            searchObject.setEndDate(end);
+            SearchRequest search = reportServiceImpl.search(searchObject);
+            System.out.println(searchObject);
+        }else{
 
 
-        List<citizenEntity> allCitizen = reportServiceImpl.findAllCitizen();
 
-        allCitizen.forEach(e-> System.out.println(e));
-        model.addAttribute("citizenList" , allCitizen);
+            allCitizen = reportServiceImpl.findAllCitizen();
+            allCitizen.forEach(e-> System.out.println(e));
+            model.addAttribute("citizenList" , allCitizen);
 
+        }
 
         return "index";
 
