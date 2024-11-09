@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ReportService_Interface {
 
-    public List<citizenEntity> findAllCitizen();
+
 
     public  List<String> loadPlan ();
 
@@ -20,7 +20,7 @@ public interface ReportService_Interface {
 
     public  boolean excelGenerate();
 
-    public SearchRequest search (SearchRequest searchRequest);
+    public List<citizenEntity> search (SearchRequest searchRequest);
 
 
 }

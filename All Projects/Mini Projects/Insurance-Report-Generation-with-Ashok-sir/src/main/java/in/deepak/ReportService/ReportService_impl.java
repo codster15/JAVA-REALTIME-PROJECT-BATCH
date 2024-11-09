@@ -4,6 +4,7 @@ import in.deepak.CitizenRepo.CitizenRepositiory;
 import in.deepak.Entity.citizenEntity;
 import in.deepak.SearchRequest.SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +16,34 @@ public class ReportService_impl implements ReportService_Interface {
     private CitizenRepositiory citizenRepositiory;
 
     @Override
-    public List<citizenEntity> findAllCitizen() {
-        List<citizenEntity> all = citizenRepositiory.findAll();
-        return all;
-    }
+    public List<citizenEntity> search(SearchRequest searchRequest) {
+
+        citizenEntity citi = new citizenEntity();
+
+        if(searchRequest.getPlanName() != null && searchRequest.getPlanName()!= ""){
+            citi.setPlanName(searchRequest.planName);
+        } if(searchRequest.getPlanStatus() != null && searchRequest.getPlanStatus()!= ""){
+            citi.setPlanStatus(searchRequest.planStatus);
+        } if(searchRequest.getGender() != null && searchRequest.getGender()!= ""){
+            citi.setGender(searchRequest.gender);
+        } if(searchRequest.getStartDate() != null ) {
+            citi.setStartDate(searchRequest.startDate);}
+
+
+            if (searchRequest.getEndDate() != null) {
+                citi.setEndDate(searchRequest.endDate);
+            }
+
+                List<citizenEntity> all = citizenRepositiory.findAll(Example.of(citi));
+
+                return all;
+            }
+
+
+
+
+
+
 
 
     @Override
@@ -46,15 +71,5 @@ public class ReportService_impl implements ReportService_Interface {
         return false;
     }
 
-    @Override
-    public SearchRequest search(SearchRequest searchRequest) {
-//                    String planName = searchRequest.getPlanName();
-//                    String planStatus = searchRequest.getPlanStatus();
-//                    String gender = searchRequest.getGender();
-//                    LocalDate startDate = searchRequest.getStartDate();
-//                    LocalDate endDate = searchRequest.getEndDate();
 
-
-        return searchRequest;
-    }
 }

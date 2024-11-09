@@ -6,18 +6,42 @@
           rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
+    <style>
+        .export-links {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+                text-align-last: center;
+
+        }
+
+        .export-link {
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 10px;
+            color: #007BFF;
+            transition: color 0.3s ease;
+        }
+
+        .export-link:hover {
+            color: #0056b3;
+        }
+    </style>
+
 </head>
 <body>
 <div class="container mt-5">
     <h2 class="text-center">Insurance Report Generation</h2>
 
     <!-- Form -->
-    <form action="/submit" method="post">
+    <form th:action="@{/search}" th:object="${searching}" method="post">
         <div class="row">
             <!-- Plan Dropdown -->
             <div class="col-md-4 mb-3">
                 <label for="plan" class="form-label">Choose a Plan:</label>
-                <select id="plan" name="plan" class="form-select">
+                <select id="plan" name="planName" class="form-select">
                     <option selected disabled>Select a plan</option>
                     <option th:each="p : ${plan}" th:value="${p}" th:text="${p}"></option>
                 </select>
@@ -26,7 +50,7 @@
             <!-- Status Dropdown -->
             <div class="col-md-4 mb-3">
                 <label for="status" class="form-label">Choose a Status:</label>
-                <select id="status" name="status" class="form-select">
+                <select id="status" name="planStatus" class="form-select">
                     <option selected disabled>Select a status</option>
                     <option th:each="s : ${status}" th:value="${s}" th:text="${s}"></option>
                 </select>
@@ -67,8 +91,8 @@
 
     <!-- Search Results Table -->
     <div class="mt-5" th:if="${citizenList != null}">
-        <h3>Citizens</h3>
-        <table class="table table-bordered">
+
+        <table class="table table-bordered table-hover table-striped">
             <thead>
             <tr>
                 <th>ID</th>
@@ -100,8 +124,27 @@
             </tr>
             </tbody>
         </table>
+
+        <div class="text-center mt-3" th:if="${#lists.isEmpty(citizenList)}">
+            Records Not found
+        </div>
+
+
+
+        <div class="export-links">
+            Export: <a href="excel" class="export-link">Excel</a>
+            <a href="/pdf" class="export-link">PDF</a>
+        </div>
+
     </div>
+    <hr>
+
+
+
+
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pqPjTh8PAWbipIIZhYTXKw4zFq1r6FsjWkfnr55qLjbthpT3CMACpUbm4Kx9S1BN"
