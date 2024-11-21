@@ -21,31 +21,67 @@ public class CitizenController {
     @Autowired
     private ReportService_Interface reportServiceImpl;
 
-    public void init (Model model){
-        model.addAttribute("plan", reportServiceImpl.loadPlan());
-        model.addAttribute("status", reportServiceImpl.loadStatus());
-    }
-
-    @GetMapping("/")
-    public String LoadIndex(Model model) {
-        model.addAttribute("searching" ,new SearchRequest());
-        init(model);
-        return "index";
-    }
+                    public void init (Model model){
+                        model.addAttribute("plan", reportServiceImpl.loadPlan());
+                        model.addAttribute("status", reportServiceImpl.loadStatus());
+                    }
+//====================================================================================================================================
 
 
+
+
+                                                                                                /**
+                                                                                                 * This Method is Used to Load The Index Page
+                                                                                                 * @param model
+                                                                                                 * @return String
+                                                                                                 */
+                @GetMapping("/")
+                public String LoadIndex(Model model) {
+                    model.addAttribute("searching" ,new SearchRequest());
+                    init(model);
+                    return "index";
+                }
+
+
+
+
+//====================================================================================================================================
+
+
+
+                                                                                            /**
+                                                                                             * with this method i am capturing the form data
+                                                                                             * @param search
+                                                                                             * @param model
+                                                                                             * @return
+                                                                                             */
     @PostMapping("/search")
     public String handleSearch (@ModelAttribute ("search") SearchRequest search , Model model){
 
+        model.addAttribute("searching" ,search);
+
+        init(model);
+
         List<citizenEntity> search1 = reportServiceImpl.search(search);
         model.addAttribute("citizenList" , search1);
-        init(model);
 
 
         return "index";
     }
 
 
+
+
+//====================================================================================================================================
+
+
+
+    @GetMapping("/pdf")
+    public String pdfGenerator(){
+
+
+        return "pdf";
+    }
 
 
 }

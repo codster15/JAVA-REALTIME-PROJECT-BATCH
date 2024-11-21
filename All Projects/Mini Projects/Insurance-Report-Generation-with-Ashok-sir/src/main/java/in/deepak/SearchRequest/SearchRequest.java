@@ -1,8 +1,6 @@
 package in.deepak.SearchRequest;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 
 
