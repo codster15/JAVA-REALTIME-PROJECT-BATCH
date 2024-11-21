@@ -40,9 +40,7 @@ public class ReportService_impl implements ReportService_Interface {
             }
 
 
-
-
-
+   //-----------------------------------------------------------------------------------------------------------------
 
 
 
@@ -53,6 +51,11 @@ public class ReportService_impl implements ReportService_Interface {
         return plan;
     }
 
+
+    //-----------------------------------------------------------------------------------------------------------------
+
+
+
     @Override
     public List<String> loadStatus() {
         List<String> status = citizenRepositiory.LoadStatus();
@@ -61,10 +64,18 @@ public class ReportService_impl implements ReportService_Interface {
         return status;
     }
 
+    //-----------------------------------------------------------------------------------------------------------------
+
+
     @Override
     public boolean pdfGenerate() {
         return false;
     }
+
+
+    //-----------------------------------------------------------------------------------------------------------------
+
+
 
     @Override
     public boolean excelGenerate() {

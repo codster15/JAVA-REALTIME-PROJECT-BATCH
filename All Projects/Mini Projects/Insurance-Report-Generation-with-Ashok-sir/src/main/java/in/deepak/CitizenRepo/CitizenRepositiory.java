@@ -17,4 +17,6 @@ public interface CitizenRepositiory extends JpaRepository<citizenEntity, Integer
     @Query(value = "SELECT DISTINCT (planStatus) FROM citizenEntity")
     public List<String> LoadStatus ();
 
+
+
 }
