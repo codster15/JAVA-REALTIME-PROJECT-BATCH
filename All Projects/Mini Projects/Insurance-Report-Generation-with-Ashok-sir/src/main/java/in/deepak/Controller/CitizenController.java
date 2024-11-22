@@ -76,13 +76,6 @@ public class CitizenController {
 
 
 
-    @GetMapping("/pdf")
-    public String pdfGenerator(){
-
-
-        return "pdf";
-    }
-
 
 }
 

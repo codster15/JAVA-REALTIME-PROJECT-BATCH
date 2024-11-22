@@ -3,6 +3,10 @@ package in.deepak.ReportService;
 import in.deepak.CitizenRepo.CitizenRepositiory;
 import in.deepak.Entity.citizenEntity;
 import in.deepak.SearchRequest.SearchRequest;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -79,6 +83,22 @@ public class ReportService_impl implements ReportService_Interface {
 
     @Override
     public boolean excelGenerate() {
+
+        Workbook document = new HSSFWorkbook();
+        Sheet sheet = document.createSheet("Citizen-Data");
+
+        Row headerRow = sheet.createRow(0);
+
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(0).setCellValue("ID");
+
+
         return false;
     }
 
