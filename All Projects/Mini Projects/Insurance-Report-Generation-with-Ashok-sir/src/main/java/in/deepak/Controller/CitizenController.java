@@ -78,9 +78,10 @@ public class CitizenController {
 
 
 
+    @GetMapping("/excel")
     public void excelExport(HttpServletResponse response) throws Exception {
         response.setContentType("application/octet-stream");
-        response.addHeader("Content-Disposition" , "attachment;filename = Citizen-Data.xlsx");
+        response.addHeader("Content-Disposition" , "attachment;filename = Citizen-Data.xls");
         reportServiceImpl.excelGenerate(response);
     }
 

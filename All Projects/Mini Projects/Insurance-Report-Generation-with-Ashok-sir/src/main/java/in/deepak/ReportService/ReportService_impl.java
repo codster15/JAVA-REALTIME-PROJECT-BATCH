@@ -71,13 +71,12 @@ public class ReportService_impl implements ReportService_Interface {
         return status;
     }
 
+
+
     //-----------------------------------------------------------------------------------------------------------------
 
 
-    @Override
-    public boolean pdfGenerate() {
-        return false;
-    }
+
 
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -114,8 +113,19 @@ public class ReportService_impl implements ReportService_Interface {
             row.createCell(3).setCellValue(citi.getPlanStatus());
             row.createCell(4).setCellValue(citi.getStartDate());
             row.createCell(5).setCellValue(citi.getEndDate());
-            row.createCell(6).setCellValue(citi.getBenefitAmount());
-            row.createCell(7).setCellValue(citi.getTerminatedReason());
+
+            if(citi.getBenefitAmount() != null ){
+                row.createCell(6).setCellValue(citi.getBenefitAmount());
+            }else{
+                row.createCell(6).setCellValue("N/A");
+            }
+
+            if(citi.getTerminatedReason() != null && citi.getTerminatedReason() != ""){
+                row.createCell(7).setCellValue(citi.getTerminatedReason());
+            }else{
+                row.createCell(7).setCellValue("N/A");
+            }
+
 
             rowIndex++;
 
@@ -127,6 +137,15 @@ public class ReportService_impl implements ReportService_Interface {
         workbook.close();
 
         return true;
+    }
+
+    //-----------------------------------------------------------------------------------------------
+
+
+
+    @Override
+    public boolean pdfGenerate(HttpServletResponse response) throws IOException {
+        return false;
     }
 
 
