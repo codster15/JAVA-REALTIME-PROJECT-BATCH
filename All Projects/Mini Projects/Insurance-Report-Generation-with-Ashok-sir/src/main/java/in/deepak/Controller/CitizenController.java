@@ -4,6 +4,7 @@ package in.deepak.Controller;
 import in.deepak.Entity.citizenEntity;
 import in.deepak.ReportService.ReportService_Interface;
 import in.deepak.SearchRequest.SearchRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -75,6 +77,12 @@ public class CitizenController {
 //====================================================================================================================================
 
 
+
+    public void excelExport(HttpServletResponse response) throws Exception {
+        response.setContentType("application/octet-stream");
+        response.addHeader("Content-Disposition" , "attachment;filename = Citizen-Data.xlsx");
+        reportServiceImpl.excelGenerate(response);
+    }
 
 
 }
