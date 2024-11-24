@@ -39,9 +39,12 @@ public class CitizenController {
                                                                                                  */
                 @GetMapping("/")
                 public String LoadIndex(Model model) {
+
                     model.addAttribute("searching" ,new SearchRequest());
                     init(model);
                     return "index";
+
+
                 }
 
 
@@ -85,6 +88,13 @@ public class CitizenController {
         reportServiceImpl.excelGenerate(response);
     }
 
+
+    @GetMapping("/excel")
+    public void pdfExport(HttpServletResponse response) throws Exception {
+        response.setContentType("application/pdf");
+        response.addHeader("Content-Disposition" , "attachment;filename = Citizen-Data.xls");
+        reportServiceImpl.excelGenerate(response);
+    }
 
 }
 

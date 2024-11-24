@@ -1,5 +1,9 @@
 package in.deepak.ReportService;
 
+import com.lowagie.text.Document;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.pdf.PdfPTable;
 import in.deepak.CitizenRepo.CitizenRepositiory;
 import in.deepak.Entity.citizenEntity;
 import in.deepak.SearchRequest.SearchRequest;
@@ -86,6 +90,15 @@ public class ReportService_impl implements ReportService_Interface {
     @Override
     public boolean excelGenerate(HttpServletResponse response) throws IOException {
 
+
+//. Create Workbook & Sheet: Initialize HSSFWorkbook and create a sheet.
+//. Add Headers: Define column names for the data.
+//. Fetch Data: Retrieve records from the database.
+//. Populate Rows: Loop through the data and fill each row with values.
+//. Handle Nulls: Set "N/A" for missing values (e.g., Benefit Amount, Terminated Reason).
+//. Write & Download: Write the workbook to the response output stream for download.
+//. Close Workbook: Close the workbook after writing the data.
+
         Workbook workbook = new HSSFWorkbook();
 
         Sheet sheet = workbook.createSheet("Citizen-Data");
@@ -145,7 +158,31 @@ public class ReportService_impl implements ReportService_Interface {
     @Override
     public boolean pdfGenerate(HttpServletResponse response) throws IOException {
 
+//. Add Dependencies: Include libraries like iText or Apache PDFBox in your pom.xml for PDF creation.
+//. Create Document: Initialize a Document object and set up a PdfWriter to write the content.
+//. Set Document Properties: Set the page size, margins, and other document properties.
+//. Add Content: Use methods like add() to insert text, tables, images, etc., into the PDF.
+//. Fetch Data: Retrieve the data you want to display in the PDF, similar to the approach used for Excel.
+//. Format Content: Format the content (e.g., font size, alignment) using appropriate classes.
+//. Write to Response: Write the generated PDF document to the HttpServletResponse output stream for download.
+//. Close Document: Close the document to save and release resources.
 
+
+        Document document = new Document(PageSize.A4);
+            document.open();
+
+        Paragraph p = new Paragraph("Citizen-Plan-Info");
+        document.add(p);
+
+        PdfPTable table = new PdfPTable(8);
+        table.addCell("ID");
+        table.addCell("Name");
+        table.addCell("Plan Name");
+        table.addCell("Plan Status");
+        table.addCell("Start Date");
+        table.addCell("End Date");
+        table.addCell("Benefit Amount");
+        table.addCell("Terminated Reason");
 
 
 
