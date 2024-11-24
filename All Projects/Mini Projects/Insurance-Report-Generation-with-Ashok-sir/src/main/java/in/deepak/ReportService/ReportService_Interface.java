@@ -20,7 +20,7 @@ public interface ReportService_Interface {
 
     public boolean pdfGenerate(HttpServletResponse response)throws IOException;
 
-    public  boolean excelGenerate(HttpServletResponse response) throws IOException;
+    public  boolean excelGenerate(HttpServletResponse response ) throws IOException;
 
     public List<citizenEntity> search (SearchRequest searchRequest);
 

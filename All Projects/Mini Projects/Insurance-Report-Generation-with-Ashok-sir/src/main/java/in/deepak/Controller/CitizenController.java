@@ -89,11 +89,11 @@ public class CitizenController {
     }
 
 
-    @GetMapping("/excel")
+    @GetMapping("/pdf")
     public void pdfExport(HttpServletResponse response) throws Exception {
         response.setContentType("application/pdf");
-        response.addHeader("Content-Disposition" , "attachment;filename = Citizen-Data.xls");
-        reportServiceImpl.excelGenerate(response);
+        response.addHeader("Content-Disposition" , "attachment;filename = Citizen.pdf");
+        reportServiceImpl.pdfGenerate(response);
     }
 
 }
