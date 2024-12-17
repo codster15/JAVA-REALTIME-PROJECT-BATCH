@@ -9,24 +9,27 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 
+import java.io.File;
+
 @Controller
 public class mailAttachment {
 
     @Autowired
     private JavaMailSender mailSender;
 
-    public boolean mailSender(String subject , String body , String to ) throws MessagingException {
+    public boolean mailSender(String subject , String body , String to , File file  ) throws MessagingException {
 
 
 
         try{
                     MimeMessage mimeMessage = mailSender.createMimeMessage();
 
-                    MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+                    MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage , true);
 
                             messageHelper.setSubject(subject);
                             messageHelper.setText(body);
                             messageHelper.setTo(to);
+                           messageHelper.addAttachment("Citizen.xls" , file);
 
                     mailSender.send(mimeMessage);
 
