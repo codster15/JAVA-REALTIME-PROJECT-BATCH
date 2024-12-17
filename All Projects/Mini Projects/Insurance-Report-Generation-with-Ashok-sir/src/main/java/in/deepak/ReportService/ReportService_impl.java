@@ -9,6 +9,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import in.deepak.CitizenRepo.CitizenRepositiory;
 import in.deepak.Entity.citizenEntity;
 import in.deepak.ReportService.utils.excelExport;
+import in.deepak.ReportService.utils.mailAttachment;
 import in.deepak.ReportService.utils.pdfExport;
 import in.deepak.SearchRequest.SearchRequest;
 import jakarta.servlet.ServletOutputStream;
@@ -36,6 +37,10 @@ public class ReportService_impl implements ReportService_Interface {
 
     @Autowired
     private pdfExport pdf;
+
+    @Autowired
+    private mailAttachment mailSender;
+
 
 
     //------------------------------------------------------------------------------------------------------------------------------
