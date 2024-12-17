@@ -25,4 +25,6 @@ public interface ReportService_Interface {
     public List<citizenEntity> search (SearchRequest searchRequest);
 
 
+
+
 }
