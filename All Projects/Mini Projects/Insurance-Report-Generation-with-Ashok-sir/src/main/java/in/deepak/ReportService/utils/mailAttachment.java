@@ -15,28 +15,37 @@ public class mailAttachment {
     @Autowired
     private JavaMailSender mailSender;
 
-    public boolean mailSender(String subject , String body , String to ) throws MessagingException {
+    // This method is responsible for sending an email.
+// It takes the email subject, body, and recipient's email address as input.
+    public boolean mailSender(String subject, String body, String to) throws MessagingException {
 
+        try {
+            // Step 1: Create a blank email message using the mailSender.
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
 
+            // Step 2: Create a helper object to configure the email message easily.
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
 
-        try{
-                    MimeMessage mimeMessage = mailSender.createMimeMessage();
+            // Step 3: Set the subject (title) of the email.
+            messageHelper.setSubject(subject);
 
-                    MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            // Step 4: Set the body (content) of the email.
+            messageHelper.setText(body);
 
-                            messageHelper.setSubject(subject);
-                            messageHelper.setText(body);
-                            messageHelper.setTo(to);
+            // Step 5: Set the recipient's email address.
+            messageHelper.setTo(to);
 
-                    mailSender.send(mimeMessage);
+            // Step 6: Send the email using the mailSender object.
+            mailSender.send(mimeMessage);
 
-        }catch(Exception e){
-
-                    e.printStackTrace();
+        } catch (Exception e) {
+            // Step 7: Print the exception details if any error occurs while sending the email.
+            e.printStackTrace();
         }
 
-
+        // Step 8: Return true after execution, regardless of success or failure.
         return true;
     }
+
 
 }

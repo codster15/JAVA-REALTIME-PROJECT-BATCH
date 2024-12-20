@@ -112,6 +112,7 @@ public class ReportService_impl implements ReportService_Interface {
                         public boolean excelGenerate(HttpServletResponse response) throws IOException {
                             List<citizenEntity> all = citizenRepositiory.findAll();
                             excel.excelGenerate(response,all);
+
                             return true;
                         }
 
