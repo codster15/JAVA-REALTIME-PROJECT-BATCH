@@ -6,13 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-@Data
 @Entity
-public class Course_Table {
+@Data
+public class EnquiryStatusEntity{
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer course_id;
+    private Integer enquiry_id;
+    private String enquiryStatus;
 
-    private String course;
 }

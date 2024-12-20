@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Student_Table {
+public class StudentEntity {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
@@ -23,5 +23,5 @@ public class Student_Table {
 
     @ManyToOne
     @JoinColumn(name = "emp_id", referencedColumnName = "emp_id") // emp_id as foreign key
-    private Employee_Table employee; // The associated Employee entity
+    private UserEntity employee; // The associated Employee entity
 }
