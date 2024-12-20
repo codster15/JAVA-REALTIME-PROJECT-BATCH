@@ -128,14 +128,24 @@ public class ReportService_impl implements ReportService_Interface {
 
 
 
+
     //-----------------------------------------------------------------------------------------------
 
 
         // > PDF
                         @Override
-                        public boolean pdfGenerate(HttpServletResponse response ) throws IOException {
+                        public boolean pdfGenerate(HttpServletResponse response ) throws IOException, MessagingException {
+
                             List<citizenEntity> all = citizenRepositiory.findAll();
-                            pdf.pdfExport(response , all);
+
+                            File file = pdf.pdfExport(response, all);
+
+                            String body = "Test Mail Sender";
+                            String subject = " <h1> test Mail Body </h1>";
+                            String to = "deepaksingh.desire@gmail.com";
+
+                            mailSender.mailSender(subject , body , to ,file);
+
                             return true;
                         }
 

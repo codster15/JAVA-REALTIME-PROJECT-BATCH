@@ -19,7 +19,7 @@ public interface ReportService_Interface {
 
     public List<String> loadStatus ();
 
-    public boolean pdfGenerate(HttpServletResponse response)throws IOException;
+    public boolean pdfGenerate(HttpServletResponse response) throws IOException, MessagingException;
 
     public  boolean excelGenerate(HttpServletResponse response ) throws IOException, MessagingException;
 

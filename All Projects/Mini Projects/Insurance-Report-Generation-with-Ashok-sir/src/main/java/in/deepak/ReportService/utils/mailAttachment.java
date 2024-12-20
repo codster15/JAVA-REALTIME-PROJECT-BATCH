@@ -29,7 +29,15 @@ public class mailAttachment {
                             messageHelper.setSubject(subject);
                             messageHelper.setText(body);
                             messageHelper.setTo(to);
-                           messageHelper.addAttachment("Citizen.xls" , file);
+
+            System.out.println(  file.getName());
+
+                        if (file.getName() == "Citizen.xls"){
+                            messageHelper.addAttachment("Citizen.xls" , file);
+                        }else{
+                            messageHelper.addAttachment("Citizen.pdf" , file);
+                        }
+
 
                     mailSender.send(mimeMessage);
 
