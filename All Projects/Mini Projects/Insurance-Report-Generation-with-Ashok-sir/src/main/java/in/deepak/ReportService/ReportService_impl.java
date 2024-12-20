@@ -9,6 +9,7 @@ import com.lowagie.text.pdf.PdfWriter;
 import in.deepak.CitizenRepo.CitizenRepositiory;
 import in.deepak.Entity.citizenEntity;
 import in.deepak.ReportService.utils.excelExport;
+
 import in.deepak.ReportService.utils.mailAttachment;
 import in.deepak.ReportService.utils.pdfExport;
 import in.deepak.SearchRequest.SearchRequest;
@@ -116,6 +117,7 @@ public class ReportService_impl implements ReportService_Interface {
                             List<citizenEntity> all = citizenRepositiory.findAll();
                             excel.excelGenerate(response,all);
 
+
                             String body = "Test Mail Sender";
                             String subject = " <h1> test Mail Body </h1>";
                             String to = "deepaksingh.desire@gmail.com";
@@ -123,6 +125,7 @@ public class ReportService_impl implements ReportService_Interface {
 
                             mailSender.mailSender(subject , body , to ,file);
                             file.delete();
+
                             return true;
                         }
 

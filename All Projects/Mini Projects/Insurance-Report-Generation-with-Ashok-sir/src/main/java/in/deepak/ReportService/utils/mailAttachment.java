@@ -1,53 +1,48 @@
 package in.deepak.ReportService.utils;
 
-
-import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 
-@Controller
+@Component
 public class mailAttachment {
 
     @Autowired
     private JavaMailSender mailSender;
 
-    public boolean mailSender(String subject , String body , String to , File file  ) throws MessagingException {
+    public boolean mailSender(String subject, String body, String to, File file) {
+        try {
+            // Create a blank email message
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
 
+            // Create a helper object to configure the email message
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
 
+            // Set subject, body, and recipient
+            messageHelper.setSubject(subject);
+            messageHelper.setText(body);
+            messageHelper.setTo(to);
 
-        try{
-                    MimeMessage mimeMessage = mailSender.createMimeMessage();
+            // Attach file
+            if ("Citizen.xls".equals(file.getName())) {
+                messageHelper.addAttachment("Citizen.xls", file);
+            } else {
+                messageHelper.addAttachment("Citizen.pdf", file);
+            }
 
-                    MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage , true);
+            // Send the email
+            mailSender.send(mimeMessage);
 
-                            messageHelper.setSubject(subject);
-                            messageHelper.setText(body);
-                            messageHelper.setTo(to);
+            return true;
 
-            System.out.println(  file.getName());
-
-                        if (file.getName() == "Citizen.xls"){
-                            messageHelper.addAttachment("Citizen.xls" , file);
-                        }else{
-                            messageHelper.addAttachment("Citizen.pdf" , file);
-                        }
-
-
-                    mailSender.send(mimeMessage);
-
-        }catch(Exception e){
-
-                    e.printStackTrace();
+        } catch (Exception e) {
+            // Print the exception details if any error occurs
+            e.printStackTrace();
+            return false;
         }
-
-
-        return true;
     }
-
 }
