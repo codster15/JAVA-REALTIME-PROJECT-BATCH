@@ -9,9 +9,11 @@ import com.lowagie.text.pdf.PdfWriter;
 import in.deepak.CitizenRepo.CitizenRepositiory;
 import in.deepak.Entity.citizenEntity;
 import in.deepak.ReportService.utils.excelExport;
+
 import in.deepak.ReportService.utils.mailAttachment;
 import in.deepak.ReportService.utils.pdfExport;
 import in.deepak.SearchRequest.SearchRequest;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -22,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -109,12 +112,23 @@ public class ReportService_impl implements ReportService_Interface {
 
     // > Excel
                         @Override
-                        public boolean excelGenerate(HttpServletResponse response) throws IOException {
+                        public boolean excelGenerate(HttpServletResponse response) throws IOException, MessagingException {
+                            File file = new File("Citizen.xls");
                             List<citizenEntity> all = citizenRepositiory.findAll();
                             excel.excelGenerate(response,all);
 
+
+                            String body = "Test Mail Sender";
+                            String subject = " <h1> test Mail Body </h1>";
+                            String to = "deepaksingh.desire@gmail.com";
+
+
+                            mailSender.mailSender(subject , body , to ,file);
+                            file.delete();
+
                             return true;
                         }
+
 
 
 
@@ -123,9 +137,18 @@ public class ReportService_impl implements ReportService_Interface {
 
         // > PDF
                         @Override
-                        public boolean pdfGenerate(HttpServletResponse response ) throws IOException {
+                        public boolean pdfGenerate(HttpServletResponse response ) throws IOException, MessagingException {
+
                             List<citizenEntity> all = citizenRepositiory.findAll();
-                            pdf.pdfExport(response , all);
+
+                            File file = pdf.pdfExport(response, all);
+
+                            String body = "Test Mail Sender";
+                            String subject = " <h1> test Mail Body </h1>";
+                            String to = "deepaksingh.desire@gmail.com";
+
+                            mailSender.mailSender(subject , body , to ,file);
+
                             return true;
                         }
 

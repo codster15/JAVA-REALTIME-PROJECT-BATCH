@@ -10,13 +10,15 @@ import in.deepak.Entity.citizenEntity;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
 @Component
 public class pdfExport {
 
-    //=== pdf ===
+
     //===   pdf  ===
 
 //. Add Dependencies: Include libraries like iText or Apache PDFBox in your pom.xml for PDF creation.
@@ -28,10 +30,15 @@ public class pdfExport {
 //. Write to Response: Write the generated PDF document to the HttpServletResponse output stream for download.
 //. Close Document: Close the document to save and release resources.
 
-    public void pdfExport(HttpServletResponse response , List<citizenEntity> all ) throws IOException {
+    public File pdfExport(HttpServletResponse response , List<citizenEntity> all  ) throws IOException {
+
+        File file = new File("Citizen.pdf");
 
         Document document = new Document(PageSize.A4);
-        PdfWriter.getInstance(document , response.getOutputStream());
+       PdfWriter.getInstance(document, response.getOutputStream());
+
+        FileOutputStream fos = new FileOutputStream(file);
+        PdfWriter.getInstance(document, fos);
 
         document.open();
 
@@ -73,6 +80,8 @@ public class pdfExport {
 
 
         document.close();
+
+        return file;
     }
 
 

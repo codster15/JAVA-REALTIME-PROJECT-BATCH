@@ -1,51 +1,48 @@
 package in.deepak.ReportService.utils;
 
-
-import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
-@Controller
+import java.io.File;
+
+@Component
 public class mailAttachment {
 
     @Autowired
     private JavaMailSender mailSender;
 
-    // This method is responsible for sending an email.
-// It takes the email subject, body, and recipient's email address as input.
-    public boolean mailSender(String subject, String body, String to) throws MessagingException {
-
+    public boolean mailSender(String subject, String body, String to, File file) {
         try {
-            // Step 1: Create a blank email message using the mailSender.
+            // Create a blank email message
             MimeMessage mimeMessage = mailSender.createMimeMessage();
 
-            // Step 2: Create a helper object to configure the email message easily.
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            // Create a helper object to configure the email message
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
 
-            // Step 3: Set the subject (title) of the email.
+            // Set subject, body, and recipient
             messageHelper.setSubject(subject);
-
-            // Step 4: Set the body (content) of the email.
             messageHelper.setText(body);
-
-            // Step 5: Set the recipient's email address.
             messageHelper.setTo(to);
 
-            // Step 6: Send the email using the mailSender object.
+            // Attach file
+            if ("Citizen.xls".equals(file.getName())) {
+                messageHelper.addAttachment("Citizen.xls", file);
+            } else {
+                messageHelper.addAttachment("Citizen.pdf", file);
+            }
+
+            // Send the email
             mailSender.send(mimeMessage);
 
+            return true;
+
         } catch (Exception e) {
-            // Step 7: Print the exception details if any error occurs while sending the email.
+            // Print the exception details if any error occurs
             e.printStackTrace();
+            return false;
         }
-
-        // Step 8: Return true after execution, regardless of success or failure.
-        return true;
     }
-
-
 }

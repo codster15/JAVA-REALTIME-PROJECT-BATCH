@@ -9,6 +9,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -71,6 +73,12 @@ public class excelExport {
 
 
         }
+
+        FileOutputStream fos = new FileOutputStream(new File("Citizen.xls"));
+        workbook.write(fos);
+        fos.close();
+
+
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
         workbook.close();
