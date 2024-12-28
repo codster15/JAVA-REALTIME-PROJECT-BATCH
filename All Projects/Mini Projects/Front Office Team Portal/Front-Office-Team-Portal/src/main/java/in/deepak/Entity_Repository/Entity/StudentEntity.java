@@ -11,8 +11,8 @@ import java.util.Date;
 public class StudentEntity {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer student_id;
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Integer studentId;
     private String name;
     private Integer phoneNo;
     private String classMode;
@@ -22,6 +22,6 @@ public class StudentEntity {
     private Date updatedDate;
 
     @ManyToOne
-    @JoinColumn(name = "emp_id", referencedColumnName = "emp_id") // emp_id as foreign key
+    @JoinColumn(name = "empId", referencedColumnName = "empId") // emp_id as foreign key
     private UserEntity employee; // The associated Employee entity
 }

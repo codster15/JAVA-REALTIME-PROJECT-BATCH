@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    /* Full Page Centering */
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 0;
+        position: relative;
+        width: 100%;
+    }
+
+    /* Quote at the Top Center */
+    .quote {
+            position: absolute;
+            top: 6%;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff; /* White color for text to stand out on the gradient */
+            padding: 20px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb); /* Updated gradient */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Soft shadow for extra effect */
+            margin: 0;
+            z-index: 1; /* Ensure it stays above other elements */
+        }
+
+.quote h2 {
+margin: 0;
+}
+
+    /* Left Side Login Form */
+    .leftLogin {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 50%;  /* Set to full height */
+        max-width: 450px;
+        padding: 40px;
+        background-color: #ffffff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+        margin-right: 20px; /* Space between the form and right section */
+    }
+
+    .leftLogin h2 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 25px;
+    }
+
+    .form-label {
+        font-size: 1rem;
+        color: #333;
+        margin-left: 1%;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+
+    .btn-primary:hover {
+        background-color: #4cae4c;
+        border-color: #4cae4c;
+    }
+
+    /* Right Section */
+    .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 8px;
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        height: 50%;  /* Set to full height */
+    }
+
+    .right img {
+            width: 100%;
+            height: 100%;
+    }
+
+    .form-text {
+        font-size: 0.85rem;
+        color: #777;
+    }
+
+    .form-links {
+        display: flex; /* Flexbox for horizontal alignment */
+        align-items: center; /* Vertically center the items */
+        justify-content: center; /* Horizontally center the whole block */
+        gap: 10px; /* Space between the text and link */
+        margin-top: 2%; /* Space above the links */
+    }
+
+    /* Styling for the text */
+    .form-links p {
+        margin: 0; /* Remove default margin for alignment */
+        font-size: 1rem; /* Font size adjustment */
+        color: #333; /* Text color */
+    }
+
+    /* Styling for 'Login here' button */
+    .create-new-btn {
+        padding: 5px 15px; /* Adjust padding */
+        background: linear-gradient(135deg, #8e2de2, #4a00e0); /* Gradient background */
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .create-new-btn:hover {
+        background: linear-gradient(135deg, #667eea, #764ba2); /* Hover effect */
+        transform: scale(1.05); /* Slight zoom */
+    }
+
+
+
+/* Styling for 'Create New' button */
+.btn-primary {
+background: linear-gradient(135deg, #6a11cb, #2575fc); /* Updated gradient */
+border-color: #5cb85c;
+border-radius: 8px;
+padding: 10px 20px;
+font-size: 1rem;
+color: white;
+text-transform: uppercase;
+font-weight: bold;
+}
+
+.btn-primary:hover {
+background: linear-gradient(135deg, #4e54c8, #8f94fb); /* Darker gradient on hover */
+border-color: #4cae4c;
+}
+h6{
+margin: 5%;
+padding-right: 32%;
+color: #E82561;
+}
+h3{
+color: white;
+font-size: larger;
+font-weight: 700;
+background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+padding: 1rem;
+border-radius: 10px;
+}
+
+.formtitle{
+width: 75%;
+height: 10%;
+margin: 5% auto;
+
+
+}
+
+
+  </style>
+</head>
+<body>
+
+<!-- Quote at the top -->
+<div class="quote">
+
+
+  <h2>Learn, create, innovate—H&Dian is your gateway to software mastery.</h2>
+</div>
+
+<div class="container">
+  <!-- ------------------------------- left  -->
+  <div class="leftLogin">
+    <div class="formtitle">  <h3>Unlock Your Account</h3></div>
+
+    <h6>Your Email : </h6>
+    <form>
+
+      <div class="mb-3">
+
+        <input type="text" class="form-control" placeholder="Enter Temporary Password" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+
+      </div>
+      <div class="mb-3">
+
+        <input type="password" class="form-control" placeholder="Enter New Password" id="exampleInputPassword1" required>
+      </div>
+
+      <div class="mb-3">
+
+        <input type="password" class="form-control" placeholder="Confirm Password" id="exampleInputPassword1" required>
+      </div>
+
+
+      <a href="/unlock" class="btn btn-primary w-100">UNLOCK</a>
+
+      <div class="form-links">
+
+        <div class="form-links">
+          <p>Already Unlocked?</p>
+          <a href="/login" class="create-new-btn">Login here</a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- -----------------------------  Right   ------------------------ -->
+  <div class="right">
+    <!-- Replace with your logo image -->
+    <img src="images/logo.png.png" alt="Logo">
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

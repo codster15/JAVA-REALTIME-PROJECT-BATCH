@@ -9,7 +9,7 @@ public interface UserServiceInterface {
 
     public String forgetPassword();
 
-    public String unlockAccount
+    public String unlockAccount ();
 
 
 }

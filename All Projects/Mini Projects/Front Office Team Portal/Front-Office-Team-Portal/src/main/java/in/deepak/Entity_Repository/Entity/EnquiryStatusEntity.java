@@ -11,7 +11,7 @@ import lombok.Data;
 public class EnquiryStatusEntity{
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer enquiry_id;
     private String enquiryStatus;
 
