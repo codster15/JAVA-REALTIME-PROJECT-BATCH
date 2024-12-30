@@ -1,15 +1,22 @@
 package in.deepak.Service.serviceInterface;
 
 
+import in.deepak.FormBinding.SignupFormBinding;
+import in.deepak.FormBinding.loginFormBinding;
+import in.deepak.FormBinding.unlockAccountFormBinding;
+
 public interface UserServiceInterface {
 
-    public boolean login();
+    public boolean login(loginFormBinding loginForm);
 
-    public void Registration();
 
-    public String forgetPassword();
+    public boolean Registration(SignupFormBinding signUp);
 
-    public String unlockAccount ();
+
+    public String forgetPassword(String emailId);
+
+
+    public String unlockAccount (unlockAccountFormBinding unlock);
 
 
 }

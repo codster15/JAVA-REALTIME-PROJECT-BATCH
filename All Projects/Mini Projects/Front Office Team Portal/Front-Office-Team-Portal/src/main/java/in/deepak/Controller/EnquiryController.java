@@ -16,4 +16,10 @@ public class EnquiryController {
         return "addEnquiry";
     }
 
+    @GetMapping("/viewEnquiries")
+    public String viewEnquiries(){
+        return "viewEnquiries";
+    }
+
+
 }
