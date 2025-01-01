@@ -12,11 +12,16 @@ public interface StudentInterface {
 
     public List<String> getStatus();
 
+    // passed user id bcoz dashboard will be different person to person
     public Integer dashBoardData(Integer id);
 
-    public boolean saveEnquiry(studentFormBinding studentForm);
+    public boolean saveUpdateEnquiry(studentFormBinding studentForm);
 
-    public List<StudentEntity> viewEnquiry(studentFilterEnquiryFormBinding filterEnquiry);
+    public List<StudentEntity> viewEnquires( Integer id, studentFilterEnquiryFormBinding filterEnquiry);
 
 
- }
+    //this method will perform the edit functionality
+    public  studentFormBinding viewEnquiryEditable(Integer id);
+
+
+}

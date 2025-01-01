@@ -1,5 +1,6 @@
 package in.deepak.Service.serviceImpl;
 
+
 import in.deepak.Entity_Repository.Entity.StudentEntity;
 import in.deepak.FormBinding.studentFilterEnquiryFormBinding;
 import in.deepak.FormBinding.studentFormBinding;
@@ -7,7 +8,7 @@ import in.deepak.Service.serviceInterface.StudentInterface;
 
 import java.util.List;
 
-public class StudentService implements StudentInterface {
+class StudentService implements StudentInterface {
 
     @Override
     public List<String> getCourse() {
@@ -25,12 +26,18 @@ public class StudentService implements StudentInterface {
     }
 
     @Override
-    public boolean saveEnquiry(studentFormBinding studentForm) {
+    public boolean saveUpdateEnquiry(studentFormBinding studentForm) {
         return false;
     }
 
     @Override
-    public List<StudentEntity> viewEnquiry(studentFilterEnquiryFormBinding filterEnquiry) {
+    public List<StudentEntity> viewEnquires(Integer id, studentFilterEnquiryFormBinding filterEnquiry) {
         return List.of();
+    }
+
+    //this method will perform the edit functionality
+    @Override
+    public studentFormBinding viewEnquiryEditable(Integer id) {
+        return null;
     }
 }

@@ -7,10 +7,10 @@ import in.deepak.FormBinding.unlockAccountFormBinding;
 
 public interface UserServiceInterface {
 
-    public boolean login(loginFormBinding loginForm);
+    public String login(loginFormBinding loginForm);
 
 
-    public boolean Registration(SignupFormBinding signUp);
+    public String Registration(SignupFormBinding signUp);
 
 
     public String forgetPassword(String emailId);
