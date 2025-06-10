@@ -64,7 +64,6 @@ public class CitizenController {
         List<citizenEntity> search1 = reportServiceImpl.search(search);
         model.addAttribute("citizenList", search1);
 
-
         return "index";
     }
 
